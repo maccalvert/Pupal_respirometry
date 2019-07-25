@@ -32,6 +32,15 @@ pH.nondia<-nH.nondia/nH.tot
 pH.dia <- nH.dia/nH.tot
 pHs<-c(pH.shal,pH.nondia,pH.dia)
 
+#Quick contigency table test to determine if the diapause classes vary significantly 
+#between one another 
+
+mat <- matrix(c(nA.shal, nA.nondia, nA.dia, nH.shal, nH.nondia, nH.dia), ncol=2, nrow = 3)
+chisq.test(mat)
+# Pearson's Chi-squared test
+# 
+# data:  mat
+# X-squared = 47.845, df = 2, p-value = 4.08e-11
 
 pupae_counts <- c(pA.shal, pA.nondia, pA.dia, pH.shal, pH.nondia, pH.dia)
 race <- c(rep("Apple", 3), rep("Haw", 3))
@@ -39,6 +48,7 @@ class <- c(rep(c("shallow", "non-diapause", "diapause"), 2))
 total <- c(rep(72, 3), rep(207, 3))
 
 df <- data.frame(pupae_counts, race, class, total)
+
 
 
 #code for mosaic plot adapted from post on stackexchange:
